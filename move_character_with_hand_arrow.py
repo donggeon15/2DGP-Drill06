@@ -32,12 +32,12 @@ def Move_character():
     global mouse_x, mouse_y
     global mouse_px, mouse_py
     global x, y, frame
-    for i in range(0, 7000):
+    for i in range(0, 100):
         clear_canvas()
         TUK_ground.draw(TUK_WIDTH // 2, TUK_HEIGHT // 2)
         hand_arrow.draw(mouse_x, mouse_y)
-        t = i / 7000
-        x = ((1 - t) * mouse_px) + (t * mouse_x)
+        t = i / 100
+        x = (((1 - t) * mouse_px) + (t * mouse_x))
         y = (((1 - t) * mouse_py) + (t * mouse_y))
         if mouse_x < mouse_px:
             character.clip_draw(frame * 100, 100 * 0, 100, 100, x, y)
@@ -46,6 +46,7 @@ def Move_character():
         frame = (frame + 1) % 8
         update_canvas()
 
+    delay(0.1)
 
 running = True
 x, y = TUK_WIDTH // 2, TUK_HEIGHT // 2
