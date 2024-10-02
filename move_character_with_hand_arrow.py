@@ -15,8 +15,10 @@ def handle_events():
     for event in events:
         if event.type == SDL_QUIT:
             running = False
+            return
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             running = False
+            return
     pass
 
 def Random_Mouse():
@@ -44,6 +46,7 @@ def Move_character():
         elif mouse_x > mouse_px:
             character.clip_draw(frame * 100, 100 * 1, 100, 100, x, y)
         frame = (frame + 1) % 8
+        handle_events()
         update_canvas()
 
     delay(0.1)
@@ -58,7 +61,6 @@ frame = 0
 while running:
     Random_Mouse()
     Move_character()
-    handle_events()
 
 
 close_canvas()
